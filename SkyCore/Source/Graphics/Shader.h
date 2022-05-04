@@ -12,8 +12,8 @@ namespace sky
 			For example if path = triangle.glsl, this class will search for triangle.glsl.frag and triangle.glsl.vert
 
 		*/
-		Shader() = default;
 		Shader(const std::string& path);
+		Shader() = default;
 		~Shader();
 
 		Shader(Shader&& other) noexcept;

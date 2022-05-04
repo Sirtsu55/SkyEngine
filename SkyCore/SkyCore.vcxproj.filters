@@ -1221,6 +1221,9 @@
     <ClInclude Include="Source\Graphics\Mesh.h">
       <Filter>Source\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Graphics\RenderCanvas.h">
+      <Filter>Source\Graphics</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Graphics\Shader.h">
       <Filter>Source\Graphics</Filter>
     </ClInclude>
@@ -1316,6 +1319,9 @@
     <ClCompile Include="Source\Graphics\Mesh.cpp">
       <Filter>Source\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Graphics\RenderCanvas.cpp">
+      <Filter>Source\Graphics</Filter>
+    </ClCompile>
     <ClCompile Include="Source\Graphics\Shader.cpp">
       <Filter>Source\Graphics</Filter>
     </ClCompile>
@@ -1361,6 +1367,12 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="Shaders\BasicColored.glsl.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\DeferredImpl.glsl.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\DeferredImpl.glsl.vert">
       <Filter>Shaders</Filter>
     </None>
     <None Include="SkyCore.lua" />

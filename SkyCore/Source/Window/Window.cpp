@@ -18,7 +18,10 @@ namespace sky
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+#ifndef NDEBUG
 		glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
+#endif // NDEBUG
+
 
 
 		m_Window = glfwCreateWindow(m_xRes, m_yRes, cInfo.name.c_str(), NULL, NULL);
@@ -28,8 +31,9 @@ namespace sky
 			glfwTerminate();
 
 		}
-		glfwSetInputMode(m_Window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 		glfwSetWindowUserPointer(m_Window, this);
+
+		//glfwSetInputMode(m_Window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 		glfwSetWindowSizeCallback(m_Window, resizewindowcallback);
 		glfwMakeContextCurrent(m_Window);
@@ -50,8 +54,16 @@ namespace sky
 
 		ImGui::StyleColorsDark();
 
-
+#ifndef NDEBUG
 		glDebugMessageCallback(GLCallback, nullptr);
+#endif
+
+		RenderCanvas::CreateInfo canvasinf{};
+		canvasinf.Resolution = glm::ivec2(m_xRes, m_yRes);
+
+		m_Canvas = CreateSptr<RenderCanvas>(canvasinf);
+
+		m_DeferredShader = CreateSptr<Shader>("Shaders/DeferredImpl.glsl");
 
 		glEnable(GL_DEPTH_TEST);
 
@@ -78,34 +90,43 @@ namespace sky
 		Input::CallMouseCback(pos);
 	}
 
-	void Window::CreateFrambuffers()
-	{
-	}
-
-	void Window::CreateGBuffers()
-	{
-	}
-
-	void Window::DeferredShade()
-	{
-	}
-
 	void Window::StartFrame()
 	{
 		FrameTimer.Start();
-		
+
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		m_Canvas->StartGBuffer();
 
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
 
+
+	
+
+
+
 	}
 
 	void Window::EndFrame()
 	{
+
+
+
+		m_Canvas->StartDeferredShading(m_DeferredShader);
+
+
+
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+		ImGui::Begin("Viewport");
+		ImGui::Image((void*)m_Canvas->GetFinalImage(), ImVec2(m_xRes, m_yRes));
+		ImGui::End();
+
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+
 
 		glfwSwapBuffers(m_Window);
 		PollEvents();

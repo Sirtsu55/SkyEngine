@@ -6,6 +6,7 @@ layout (location = 2) in vec2 aTex;
 
 uniform mat4 MVP;
 uniform mat4 Transform;
+
 out vec3 Norms;
 out vec2 Tex;
 

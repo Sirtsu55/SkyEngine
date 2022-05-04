@@ -28,6 +28,7 @@ namespace sky
 
 
 		Sptr<Mesh> m;
+		Sptr<Mesh> m2;
 
 
 		void Init();

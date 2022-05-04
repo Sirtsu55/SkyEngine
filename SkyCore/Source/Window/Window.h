@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include <GLFW/glfw3.h>
+#include "Graphics/RenderCanvas.h"
 
 int main(void);
 
@@ -65,9 +66,7 @@ namespace sky
 
 		//Only called by mousecbackglfw
 		void UpdateMouse(const glm::vec2& pos);
-		void CreateFrambuffers();
-		void CreateGBuffers();
-		void DeferredShade();
+
 
 		ImGuiContext* m_ImguiCtx;
 		GLFWwindow* m_Window;
@@ -77,6 +76,8 @@ namespace sky
 		int m_xRes;
 		int m_yRes;
 
+		Sptr<RenderCanvas> m_Canvas;
+		Sptr<Shader> m_DeferredShader;
 
 
 		mutable double DeltaTime = 0.0f;

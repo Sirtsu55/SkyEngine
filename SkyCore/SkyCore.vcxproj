@@ -507,6 +507,7 @@
     <ClInclude Include="Source\Graphics\Lighter.h" />
     <ClInclude Include="Source\Graphics\Material.h" />
     <ClInclude Include="Source\Graphics\Mesh.h" />
+    <ClInclude Include="Source\Graphics\RenderCanvas.h" />
     <ClInclude Include="Source\Graphics\Shader.h" />
     <ClInclude Include="Source\Graphics\Texture.h" />
     <ClInclude Include="Source\Graphics\VertexData.h" />
@@ -562,6 +563,7 @@
     <ClCompile Include="Source\Graphics\Lighter.cpp" />
     <ClCompile Include="Source\Graphics\Material.cpp" />
     <ClCompile Include="Source\Graphics\Mesh.cpp" />
+    <ClCompile Include="Source\Graphics\RenderCanvas.cpp" />
     <ClCompile Include="Source\Graphics\Shader.cpp" />
     <ClCompile Include="Source\Graphics\Texture.cpp" />
     <ClCompile Include="Source\Graphics\VertexData.cpp" />
@@ -581,6 +583,8 @@
   <ItemGroup>
     <None Include="Shaders\BasicColored.glsl.frag" />
     <None Include="Shaders\BasicColored.glsl.vert" />
+    <None Include="Shaders\DeferredImpl.glsl.frag" />
+    <None Include="Shaders\DeferredImpl.glsl.vert" />
     <None Include="SkyCore.lua" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

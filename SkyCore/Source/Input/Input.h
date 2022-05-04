@@ -8,6 +8,7 @@ namespace sky
 {
 
 	class Window;
+	//TODO: Better implementation of Input
 
 	enum class InputState
 	{
